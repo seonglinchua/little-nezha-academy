@@ -57,7 +57,7 @@ const Hero: React.FC = () => {
           </div>
 
           {/* Hero Image Placeholder */}
-          <div className="mt-16 w-full max-w-5xl">
+          <div className="mt-16 w-full max-w-5xl relative">
             <div className="relative rounded-nezha-xl overflow-hidden shadow-nezha-xl border-4 border-white bg-gradient-to-br from-nezha-trust-100 to-nezha-primary-100 aspect-video flex items-center justify-center">
               {/* Placeholder for hero illustration/screenshot */}
               <div className="text-center p-8">
@@ -68,6 +68,31 @@ const Hero: React.FC = () => {
                 <p className="text-body-lg text-nezha-neutral-600 mt-2">
                   Replace with actual product screenshot or illustration
                 </p>
+              </div>
+
+              {/* Slide Navigation Controls */}
+              <div className="absolute inset-0 flex items-center justify-between px-4 pointer-events-none">
+                {/* Previous Button */}
+                <button className="pointer-events-auto bg-white/90 hover:bg-white rounded-full p-3 shadow-nezha-md transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-nezha-primary-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-nezha-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+
+                {/* Next Button */}
+                <button className="pointer-events-auto bg-white/90 hover:bg-white rounded-full p-3 shadow-nezha-md transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-nezha-primary-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-nezha-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Slide Indicators */}
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+                <div className="w-2 h-2 rounded-full bg-nezha-primary-600"></div>
+                <div className="w-2 h-2 rounded-full bg-nezha-neutral-300"></div>
+                <div className="w-2 h-2 rounded-full bg-nezha-neutral-300"></div>
+                <div className="w-2 h-2 rounded-full bg-nezha-neutral-300"></div>
               </div>
             </div>
 
