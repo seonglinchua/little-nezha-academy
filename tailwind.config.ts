@@ -93,11 +93,11 @@ const config: Config = {
       },
       fontFamily: {
         // Primary font - Playful and rounded for kids
-        display: ['Nunito', 'system-ui', 'sans-serif'],
+        display: ['var(--font-nunito)', 'system-ui', 'sans-serif'],
         // Body font - Clear and readable
-        body: ['Inter', 'system-ui', 'sans-serif'],
+        body: ['var(--font-inter)', 'system-ui', 'sans-serif'],
         // Fun font for special elements
-        fun: ['Fredoka', 'Nunito', 'system-ui', 'sans-serif'],
+        fun: ['Fredoka', 'var(--font-nunito)', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         // Responsive typography scale
