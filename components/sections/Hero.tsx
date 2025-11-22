@@ -1,11 +1,48 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Badge, Container } from '@/components/ui'
 import { landingPageContent } from '@/lib/content'
 
 const Hero: React.FC = () => {
   const { hero } = landingPageContent
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  // Dashboard slides content
+  const dashboardSlides = [
+    {
+      icon: '⏰📊',
+      title: 'Analog Clock Trainer',
+      description: 'Master time-telling with interactive clock hands and real-world scenarios'
+    },
+    {
+      icon: '🧮✨',
+      title: 'Math Lab Progress',
+      description: 'Track your multiplication mastery and problem-solving achievements'
+    },
+    {
+      icon: '📚🎯',
+      title: 'Language Explorer Dashboard',
+      description: 'Monitor vocabulary growth and reading comprehension levels'
+    },
+    {
+      icon: '🎨🌟',
+      title: 'Creative Studio Portfolio',
+      description: 'Showcase your digital art, music, and storytelling creations'
+    }
+  ]
+
+  const handlePrevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? dashboardSlides.length - 1 : prev - 1))
+  }
+
+  const handleNextSlide = () => {
+    setCurrentSlide((prev) => (prev === dashboardSlides.length - 1 ? 0 : prev + 1))
+  }
+
+  const handleSlideIndicatorClick = (index: number) => {
+    setCurrentSlide(index)
+  }
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-nezha-primary-50 via-white to-nezha-accent-50 pt-20 pb-32 md:pt-28 md:pb-40">
@@ -56,31 +93,39 @@ const Hero: React.FC = () => {
             ))}
           </div>
 
-          {/* Hero Image Placeholder */}
+          {/* Interactive Learning Dashboard */}
           <div className="mt-16 w-full max-w-5xl relative">
             <div className="relative rounded-nezha-xl overflow-hidden shadow-nezha-xl border-4 border-white bg-gradient-to-br from-nezha-trust-100 to-nezha-primary-100 aspect-video flex items-center justify-center">
-              {/* Placeholder for hero illustration/screenshot */}
-              <div className="text-center p-8">
-                <div className="text-6xl mb-4 animate-bounce-slow">🎒✨</div>
+              {/* Dashboard Slide Content */}
+              <div className="text-center p-8 transition-all duration-500">
+                <div className="text-6xl mb-4 animate-bounce-slow">{dashboardSlides[currentSlide].icon}</div>
                 <p className="text-heading-lg font-display text-nezha-primary-600">
-                  Interactive Learning Dashboard
+                  {dashboardSlides[currentSlide].title}
                 </p>
                 <p className="text-body-lg text-nezha-neutral-600 mt-2">
-                  Replace with actual product screenshot or illustration
+                  {dashboardSlides[currentSlide].description}
                 </p>
               </div>
 
               {/* Slide Navigation Controls */}
               <div className="absolute inset-0 flex items-center justify-between px-4 pointer-events-none">
                 {/* Previous Button */}
-                <button className="pointer-events-auto bg-white/90 hover:bg-white rounded-full p-3 shadow-nezha-md transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-nezha-primary-500">
+                <button
+                  onClick={handlePrevSlide}
+                  className="pointer-events-auto bg-white/90 hover:bg-white rounded-full p-3 shadow-nezha-md transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-nezha-primary-500"
+                  aria-label="Previous slide"
+                >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-nezha-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
 
                 {/* Next Button */}
-                <button className="pointer-events-auto bg-white/90 hover:bg-white rounded-full p-3 shadow-nezha-md transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-nezha-primary-500">
+                <button
+                  onClick={handleNextSlide}
+                  className="pointer-events-auto bg-white/90 hover:bg-white rounded-full p-3 shadow-nezha-md transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-nezha-primary-500"
+                  aria-label="Next slide"
+                >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-nezha-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -89,25 +134,19 @@ const Hero: React.FC = () => {
 
               {/* Slide Indicators */}
               <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
-                <div className="w-2 h-2 rounded-full bg-nezha-primary-600"></div>
-                <div className="w-2 h-2 rounded-full bg-nezha-neutral-300"></div>
-                <div className="w-2 h-2 rounded-full bg-nezha-neutral-300"></div>
-                <div className="w-2 h-2 rounded-full bg-nezha-neutral-300"></div>
+                {dashboardSlides.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleSlideIndicatorClick(index)}
+                    className={`w-2 h-2 rounded-full transition-all ${
+                      index === currentSlide
+                        ? 'bg-nezha-primary-600 w-8'
+                        : 'bg-nezha-neutral-300 hover:bg-nezha-neutral-400'
+                    }`}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
               </div>
-            </div>
-
-            {/* Floating Module Icons */}
-            <div className="absolute -top-8 -left-8 bg-white rounded-nezha-lg shadow-nezha-md p-4 animate-float hidden lg:block">
-              <div className="text-4xl">⏰</div>
-            </div>
-            <div className="absolute -top-8 -right-8 bg-white rounded-nezha-lg shadow-nezha-md p-4 animate-float hidden lg:block" style={{ animationDelay: '0.5s' }}>
-              <div className="text-4xl">🧮</div>
-            </div>
-            <div className="absolute -bottom-8 left-1/4 bg-white rounded-nezha-lg shadow-nezha-md p-4 animate-float hidden lg:block" style={{ animationDelay: '1s' }}>
-              <div className="text-4xl">📚</div>
-            </div>
-            <div className="absolute -bottom-8 right-1/4 bg-white rounded-nezha-lg shadow-nezha-md p-4 animate-float hidden lg:block" style={{ animationDelay: '1.5s' }}>
-              <div className="text-4xl">🧩</div>
             </div>
           </div>
         </div>
