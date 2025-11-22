@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
+  basePath: '/little-nezha-academy',
   images: {
     unoptimized: true,
   },
